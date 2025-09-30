@@ -13,13 +13,13 @@ userRouter.get("/", (req, res) => {
 });
 
 userRouter.get("/contact-us", (req, res) => {
-  res.sendFile(path.join(rootDir, "views", "contactUs.html"));
+  res.sendFile(path.join(rootDir, "views", "contact-us.html"));
 });
 
 userRouter.post("/contact-us", (req, res) => {
   console.log(req.body);
 
-  res.sendFile(path.join(rootDir, "views", "contactSubmited.html"));
+  res.sendFile(path.join(rootDir, "views", "contact-success.html"));
 });
 
 module.exports = userRouter;

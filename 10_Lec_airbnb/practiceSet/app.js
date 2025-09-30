@@ -6,7 +6,7 @@ const port = 3000;
 
 // local module
 const userRouter = require("./routes/userRouter");
-const rootDir = require("../utils/pathUtils");
+const rootDir = require("./utils/pathUtils");
 // Adding  Dummy Middleware that log req url & method
 
 app.use((req, res, next) => {
