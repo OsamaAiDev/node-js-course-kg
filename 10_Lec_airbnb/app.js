@@ -1,5 +1,13 @@
+// core module
+const path = require("path");
+
 // external module
 const express = require("express");
+
+// local module
+const userRouter = require("./routes/userRoutes");
+const hostRouter = require("./routes/hostRouter");
+const rootDir = require("./utils/pathUtils");
 const app = express();
 const PORT = 3000;
 
@@ -10,28 +18,18 @@ app.use((req, res, next) => {
 });
 //agr req ka sath data aye ga  tu us ko parse kr ka req.body ma add kr da ga
 app.use(express.urlencoded());
-app.get("/", (req, res, next) => {
-  res.send(`
-    <h1>Welcome to airbnb</h1>
-    <a href="/add-home">Add Home</a>
-    `);
-});
-app.get("/add-home", (req, res, next) => {
-  res.send(`
-    <h1>Register your home here:</h1>
-     <form action="/add-home" method="post">
-      <input type="text" name="houseName" placeholder="Enter house name" />
-      <input type="submit" />
-    </form>
-    `);
-});
-app.post("/add-home", (req, res, next) => {
-  console.log(req.body);
-  res.send(`
-    <h1>Home registered successfully</h1>
-    <a href="/">Go toHome</a>
-    `);
-});
+// handle host routes / paths
+app.use("/host", hostRouter);
+// handle user Routes / paths
+app.use(userRouter);
+
+// adding 404
+
+app.use((req, res, next) =>
+  // res.status(404).sendFile(path.join(__dirname, "views", "404.html"))
+  res.status(404).sendFile(path.join(rootDir, "views", "404.html"))
+);
+
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
