@@ -1,0 +1,25 @@
+<%- include("../partials/head") %>
+</head>
+<body>
+  <%- include("../partials/header") %>
+ <% registeredHouses.forEach(house => { %>
+  <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+    <img class="w-full" src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg" alt="House Photo">
+    <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2 text-gray-800"><%= house.houseName %></div>
+        <p class="text-gray-700 text-base mb-2">
+            <span class="font-semibold">Rating:</span> <%= house.rating %>
+        </p>
+        <p class="text-gray-700 text-base mb-2">
+            <span class="font-semibold">Location:</span> <%= house.location %>
+        </p>
+        <p class="text-gray-900 text-lg font-bold">
+          $  <%= house.price %> 
+        </p>
+        <button class="bg-green-300 p-2 cursor-pointer">Book Now</button>
+        <button class="bg-blue-300 p-2 cursor-pointer">Details</button>
+    </div>
+</div>
+  <% })%>
+</body>
+</html>
